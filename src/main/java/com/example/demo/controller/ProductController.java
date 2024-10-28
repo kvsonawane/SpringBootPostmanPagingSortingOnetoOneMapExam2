@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.entity.Product;
+import com.example.demo.service.ProductService;
 
 
 
@@ -27,7 +28,7 @@ import com.example.demo.entity.Product;
 public class ProductController {
 	
 	@Autowired
-	private ProductService applicantService;
+	private ProductService productService;
 	
 	@PostMapping
 	public Product createProduct(@RequestBody Product product)
@@ -38,7 +39,7 @@ public class ProductController {
 	@PutMapping("/{id}")
 	public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody Product productDetails)
 	{
-		Product updateProduct = productService.update(id, ProductDetails);
+		Product updateProduct = productService.update(id, productDetails);
 		
 		return updateProduct != null ? ResponseEntity.ok(updateProduct) : ResponseEntity.notFound().build();
 	}
